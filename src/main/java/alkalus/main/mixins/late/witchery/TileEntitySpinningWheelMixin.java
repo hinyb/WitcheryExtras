@@ -3,12 +3,14 @@ package alkalus.main.mixins.late.witchery;
 import java.util.ArrayList;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.emoniph.witchery.blocks.BlockSpinningWheel;
 
@@ -38,5 +40,10 @@ public class TileEntitySpinningWheelMixin {
             }
         }
         ci.cancel();
+    }
+
+    @Inject(method = { "getInventoryName", "func_145825_b" }, at = @At("HEAD"), cancellable = true, remap = false)
+    private void witcheryextras$useGuiTitleKey(CallbackInfoReturnable<String> cir) {
+        cir.setReturnValue(StatCollector.translateToLocal("gui.witcheryextras.spinningwheel.title"));
     }
 }

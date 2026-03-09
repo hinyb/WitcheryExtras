@@ -1,7 +1,11 @@
 package alkalus.main.mixins.late.witchery;
 
+import net.minecraft.util.StatCollector;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.emoniph.witchery.blocks.BlockDistillery;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -19,5 +23,10 @@ public abstract class TileEntityDistilleryMixin {
             allow = 1)
     private int witcheryextras$fixSlotInsertion(int original) {
         return 2;
+    }
+
+    @Inject(method = { "getInventoryName", "func_145825_b" }, at = @At("HEAD"), cancellable = true, remap = false)
+    private void witcheryextras$useGuiTitleKey(CallbackInfoReturnable<String> cir) {
+        cir.setReturnValue(StatCollector.translateToLocal("gui.witcheryextras.distilleryidle.title"));
     }
 }
