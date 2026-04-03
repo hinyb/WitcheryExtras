@@ -10,6 +10,14 @@ import alkalus.main.config.AsmConfig;
 public enum Mixins implements IMixins {
 
     // spotless:off
+    FIX_SHAPESHIFT_CAMERA(new MixinBuilder("Correct camera offset when shapeshift")
+            .addClientMixins("minecraft.EntityRendererMixin")
+            .addRequiredMod(TargetedMod.WITCHERY)
+            .setPhase(Phase.EARLY)),
+    WITCHERY_OFFSET_CAPTURE(new MixinBuilder("Captures Witchery shapeshift offset and skip the origin view shifting logic")
+            .addClientMixins("witchery.RenderEntityViewerMixin")
+            .addRequiredMod(TargetedMod.WITCHERY)
+            .setPhase(Phase.LATE)),
     WITCHERY(new MixinBuilder()
             .addCommonMixins(
                     "witchery.TileEntityPoppetShelfMixin",
