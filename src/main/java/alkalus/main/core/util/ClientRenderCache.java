@@ -5,5 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientRenderCache {
+
     public static float shapeShiftYOffset = 0f;
 }
