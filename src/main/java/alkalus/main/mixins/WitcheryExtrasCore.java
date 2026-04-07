@@ -1,4 +1,4 @@
-package alkalus.main.asm;
+package alkalus.main.mixins;
 
 import java.util.List;
 import java.util.Map;
@@ -7,11 +7,9 @@ import java.util.Set;
 import com.gtnewhorizon.gtnhmixins.IEarlyMixinLoader;
 import com.gtnewhorizon.gtnhmixins.builders.IMixins;
 
-import alkalus.main.mixins.Mixins;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
-@IFMLLoadingPlugin.TransformerExclusions("alkalus.main.asm")
 public class WitcheryExtrasCore implements IFMLLoadingPlugin, IEarlyMixinLoader {
 
     @Override
