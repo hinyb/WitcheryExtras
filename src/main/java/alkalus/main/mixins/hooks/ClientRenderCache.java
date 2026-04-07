@@ -1,4 +1,4 @@
-package alkalus.main.core.util;
+package alkalus.main.mixins.hooks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

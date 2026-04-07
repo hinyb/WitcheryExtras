@@ -15,7 +15,7 @@ import com.emoniph.witchery.client.PlayerRender;
 import com.emoniph.witchery.integration.ModHookMorph;
 import com.emoniph.witchery.util.EntitySizeInfo;
 
-import alkalus.main.core.util.ClientRenderCache;
+import alkalus.main.mixins.hooks.ClientRenderCache;
 
 @Mixin(value = PlayerRender.class, remap = false)
 public class PlayerRenderMixin {

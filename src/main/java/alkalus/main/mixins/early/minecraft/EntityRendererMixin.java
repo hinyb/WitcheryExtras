@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import alkalus.main.core.util.ClientRenderCache;
+import alkalus.main.mixins.hooks.ClientRenderCache;
 
 @Mixin(EntityRenderer.class)
 public class EntityRendererMixin {
