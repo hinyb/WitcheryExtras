@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import alkalus.main.mixins.hooks.ClientRenderCache;
+import alkalus.main.mixins.hooks.EntitySizeManager;
 
 @Mixin(NetHandlerPlayClient.class)
 public class NetHandlerPlayClientMixin {
@@ -26,7 +26,7 @@ public class NetHandlerPlayClientMixin {
     private double applyOffset(double origin) {
         if (this.gameController.renderViewEntity != null
                 && !(this.gameController.currentScreen instanceof GuiSleepMP)) {
-            return origin - ClientRenderCache.shapeShiftYOffset;
+            return origin - EntitySizeManager.shapeShiftYOffset;
         }
         return origin;
     }

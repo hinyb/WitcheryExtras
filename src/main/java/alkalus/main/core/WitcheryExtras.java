@@ -10,6 +10,7 @@ import alkalus.main.api.plugin.base.BasePluginWitchery;
 import alkalus.main.core.crafting.OvenRecipes;
 import alkalus.main.core.entities.PredictionHandler;
 import alkalus.main.core.recipe.fixes.GarlicRecipes;
+import alkalus.main.mixins.hooks.EntitySizeManager;
 import alkalus.main.core.util.Logger;
 import alkalus.main.core.util.TooltipHandler;
 import baubles.api.expanded.BaubleExpandedSlots;
@@ -60,6 +61,7 @@ public class WitcheryExtras {
 
     @Mod.EventHandler
     public synchronized void postInit(final FMLPostInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(new EntitySizeManager());
         if (event.getSide().isClient()) {
             MinecraftForge.EVENT_BUS.register(new TooltipHandler());
         }
