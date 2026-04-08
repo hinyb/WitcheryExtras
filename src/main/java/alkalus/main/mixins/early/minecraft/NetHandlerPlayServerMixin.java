@@ -19,8 +19,7 @@ public class NetHandlerPlayServerMixin {
 
     @ModifyExpressionValue(method = "processPlayer", at = @At(value = "CONSTANT", args = "doubleValue=1.65D"))
     private double applyOffset(double origin) {
-        float targetOffset = EntitySizeManager.getTargetYOffsetServer(playerEntity);
         // Because shapeshift is a slow process.
-        return origin - Math.min(targetOffset, 0);
+        return origin - EntitySizeManager.OffsetContents.getCurrentOffset(playerEntity);
     }
 }

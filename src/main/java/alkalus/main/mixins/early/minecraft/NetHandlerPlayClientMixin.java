@@ -1,5 +1,6 @@
 package alkalus.main.mixins.early.minecraft;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +19,6 @@ public class NetHandlerPlayClientMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/network/play/server/S08PacketPlayerPosLook;func_148928_d()D"))
     private double applyOffset(double origin) {
-        return origin - EntitySizeManager.shapeShiftYOffset;
+        return origin - EntitySizeManager.OffsetContents.getCurrentOffset(Minecraft.getMinecraft().thePlayer);
     }
 }

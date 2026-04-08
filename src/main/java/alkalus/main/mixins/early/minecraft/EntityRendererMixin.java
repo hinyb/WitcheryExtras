@@ -2,7 +2,7 @@ package alkalus.main.mixins.early.minecraft;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,9 +19,10 @@ public class EntityRendererMixin {
 
     @ModifyVariable(method = "orientCamera", at = @At(value = "STORE", ordinal = 0), ordinal = 1)
     private float applyOffset(float origin) {
-        EntityLivingBase player = this.mc.renderViewEntity;
-        if (player != null && !player.isPlayerSleeping() && !player.isRiding()) {
-            return origin + EntitySizeManager.shapeShiftYOffset;
+        if (this.mc.renderViewEntity instanceof EntityPlayer player) {
+            if (!player.isPlayerSleeping() && !player.isRiding()) {
+                return origin + EntitySizeManager.OffsetContents.getCurrentOffset(player);
+            }
         }
         return origin;
     }

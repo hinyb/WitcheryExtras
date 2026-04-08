@@ -22,10 +22,6 @@ public enum Mixins implements IMixins {
             .addClientMixins("minecraft.EntityRendererMixin")
             .addRequiredMod(TargetedMod.WITCHERY)
             .setPhase(Phase.EARLY)),
-    FIX_SHAPESHIFT_OFFSET(new MixinBuilder("Correct yOffset when shapeshift")
-            .addClientMixins("minecraft.EntityPlayerMixin")
-            .addRequiredMod(TargetedMod.WITCHERY)
-            .setPhase(Phase.EARLY)),
     WITCHERY_OFFSET_CAPTURE(new MixinBuilder("Captures Witchery shapeshift offset and skip the origin view shifting logic")
             .addClientMixins("witchery.PlayerRenderMixin")
             .addRequiredMod(TargetedMod.WITCHERY)
