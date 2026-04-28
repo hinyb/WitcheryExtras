@@ -18,20 +18,29 @@ public class EntitySizeSyncPacket implements IMessage {
 
     public EntitySizeSyncPacket() {}
 
-    public EntitySizeSyncPacket(float offset) {
-        targetOffset = offset;
+    public EntitySizeSyncPacket(float targetOffset) {
+        this.targetOffset = targetOffset;
+        this.isInstant = false;
+    }
+
+    public EntitySizeSyncPacket(float targetOffset, boolean isInstant) {
+        this.targetOffset = targetOffset;
+        this.isInstant = isInstant;
     }
 
     float targetOffset;
+    boolean isInstant;
 
     @Override
     public void fromBytes(ByteBuf buf) {
         targetOffset = buf.readFloat();
+        isInstant = buf.readBoolean();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeFloat(targetOffset);
+        buf.writeBoolean(isInstant);
     }
 
     public static class Handler implements IMessageHandler<EntitySizeSyncPacket, IMessage> {
@@ -46,6 +55,7 @@ public class EntitySizeSyncPacket implements IMessage {
             IExtendedEntityProperties prop = player.getExtendedProperties(OFFSET_PROPERTY);
             if (prop instanceof EntitySizeManager.OffsetContents contents) {
                 contents.targetOffset = message.targetOffset;
+                if (message.isInstant) contents.currentOffset = contents.targetOffset;
             }
             return null;
         }

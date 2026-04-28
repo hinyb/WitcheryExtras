@@ -27,14 +27,6 @@ public class ServerSizeHandler {
                     contents.targetOffset = tmp;
                     NETWORK.sendTo(new EntitySizeSyncPacket(tmp), player);
                 }
-                if (contents.currentOffset == contents.targetOffset) {
-                    return;
-                }
-                if (contents.currentOffset < contents.targetOffset) {
-                    contents.currentOffset = Math.min(contents.currentOffset + 0.01F, contents.targetOffset);
-                } else {
-                    contents.currentOffset = Math.max(contents.currentOffset - 0.01F, contents.targetOffset);
-                }
             }
         }
     }
