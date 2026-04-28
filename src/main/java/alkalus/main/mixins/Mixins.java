@@ -18,6 +18,14 @@ public enum Mixins implements IMixins {
             .addCommonMixins("minecraft.NetHandlerPlayServerMixin")
             .addRequiredMod(TargetedMod.WITCHERY)
             .setPhase(Phase.EARLY)),
+    FIX_IS_ENTITY_INSIDE_OPAQUE_BLOCK(new MixinBuilder("Fix suffocation check for resized entities")
+            .addCommonMixins("minecraft.EntityMixin")
+            .addRequiredMod(TargetedMod.WITCHERY)
+            .setPhase(Phase.EARLY)),
+    FIX_POSITON_RESIZING_EYE_HEIGHT(new MixinBuilder("Fix player eye height positioning during resizing")
+            .addCommonMixins("witchery.PotionResizingMixin")
+            .addRequiredMod(TargetedMod.WITCHERY)
+            .setPhase(Phase.LATE)),
     FIX_SHAPESHIFT_CAMERA(new MixinBuilder("Correct camera offset when shapeshift")
             .addClientMixins("minecraft.EntityRendererMixin")
             .addRequiredMod(TargetedMod.WITCHERY)
